@@ -1,7 +1,7 @@
 module GitDiffParser
   # Parsed patch
   class Patch
-    RANGE_INFORMATION_LINE = /^@@ -(?<old_line_number>\d+),.+\+(?<line_number>\d+),/
+    RANGE_INFORMATION_LINE = /^@@ -(?<old_line_number>\d+)(,\d+)? \+(?<line_number>\d+)(,\d+)?/
     MODIFIED_LINE = /^\+(?!\+|\+)/
     REMOVED_LINE = /^[-]/
     NOT_REMOVED_LINE = /^[^-]/

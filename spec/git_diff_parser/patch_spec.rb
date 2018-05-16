@@ -40,6 +40,15 @@ module GitDiffParser
         expect(patch.removed_lines.map(&:patch_position)).to eq [5]
       end
 
+      it 'supports short-hand range information' do
+        patch_body = File.read('spec/support/fixtures/added_removed_lines_2.diff')
+        patch = Patch.new(patch_body)
+
+        expect(patch.removed_lines.size).to eq(1)
+        expect(patch.removed_lines.map(&:number)).to eq [1]
+        expect(patch.removed_lines.map(&:patch_position)).to eq [1]
+      end
+
       context 'when body is nil' do
         it 'returns no lines' do
           patch = Patch.new(nil)
