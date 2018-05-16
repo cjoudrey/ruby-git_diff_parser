@@ -31,6 +31,15 @@ module GitDiffParser
         expect(patch.removed_lines.map(&:patch_position)).to eq [4, 21, 22, 23, 24, 25, 36]
       end
 
+      it 'returns the right line number when a line is added before a removed line' do
+        patch_body = File.read('spec/support/fixtures/added_removed_lines.diff')
+        patch = Patch.new(patch_body)
+
+        expect(patch.removed_lines.size).to eq(1)
+        expect(patch.removed_lines.map(&:number)).to eq [4]
+        expect(patch.removed_lines.map(&:patch_position)).to eq [5]
+      end
+
       context 'when body is nil' do
         it 'returns no lines' do
           patch = Patch.new(nil)

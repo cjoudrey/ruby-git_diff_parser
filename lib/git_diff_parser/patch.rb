@@ -5,6 +5,7 @@ module GitDiffParser
     MODIFIED_LINE = /^\+(?!\+|\+)/
     REMOVED_LINE = /^[-]/
     NOT_REMOVED_LINE = /^[^-]/
+    UNCHANGED_LINE = /^\s/
 
     attr_accessor :file, :body, :secure_hash
     # @!attribute [rw] file
@@ -93,7 +94,7 @@ module GitDiffParser
           )
           lines << line
           line_number += 1
-        when NOT_REMOVED_LINE
+        when UNCHANGED_LINE
           line_number += 1
         end
 

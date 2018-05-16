@@ -1,0 +1,8 @@
+@@ -1,5 +1,5 @@
+ type Query {
++  d: String
+   a: String
+   b: String
+-  c: String
+ }
+
